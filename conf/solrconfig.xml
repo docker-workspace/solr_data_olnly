@@ -800,6 +800,17 @@
     </lst>
   </requestHandler>
 
+  <!-- Solr Dedupe added 20191122
+    https://lucene.apache.org/solr/guide/6_6/de-duplication.html#De-Duplication-ConfigurationOptions
+  -->
+  <requestHandler name="/update" class="solr.UpdateRequestHandler" >
+    <lst name="defaults">
+      <str name="update.chain">dedupe</str>
+    </lst>
+  </requestHandler>
+
+
+
   <!-- Search Components
 
        Search components are registered to SolrCore and used by
@@ -1199,7 +1210,7 @@
     <processor class="solr.RunUpdateProcessorFactory"/>
   </updateRequestProcessorChain>
   -->
-  <!-- Deduplication
+  <!-- Deduplication added 20191122
 
        An example dedup update processor that creates the "id" field
        on the fly based on the hash code of some other fields.  This
@@ -1208,19 +1219,17 @@
        uniqueness based on that anyway.
 
     -->
-  <!--
      <updateRequestProcessorChain name="dedupe">
        <processor class="solr.processor.SignatureUpdateProcessorFactory">
          <bool name="enabled">true</bool>
          <str name="signatureField">id</str>
          <bool name="overwriteDupes">false</bool>
-         <str name="fields">name,features,cat</str>
+         <!-- default all the fields - str name="fields">name,features,cat</str>-->
          <str name="signatureClass">solr.processor.Lookup3Signature</str>
        </processor>
        <processor class="solr.LogUpdateProcessorFactory" />
        <processor class="solr.RunUpdateProcessorFactory" />
      </updateRequestProcessorChain>
-    -->
 
   <!-- Language identification
 
