@@ -19,7 +19,7 @@ build:
 	@docker tag ${IMG} ${PUBLIC_IMG}
 
 push: build
-	@docker ${IMG}
+	@docker push ${IMG}
 
 # login:
 #   @docker log -u ${DOCKER_USER} -p ${DOCKER_PASS}
