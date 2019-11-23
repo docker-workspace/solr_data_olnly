@@ -1224,7 +1224,7 @@
          <bool name="enabled">true</bool>
          <str name="signatureField">id</str>
          <bool name="overwriteDupes">false</bool>
-         <!-- default all the fields - str name="fields">name,features,cat</str>-->
+         <str name="fields">category,period,Medicine,Pack Size,unit,VMPP Snomed Code,Basic Price</str>
          <str name="signatureClass">solr.processor.Lookup3Signature</str>
        </processor>
        <processor class="solr.LogUpdateProcessorFactory" />
